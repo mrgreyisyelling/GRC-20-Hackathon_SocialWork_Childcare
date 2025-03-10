@@ -1,0 +1,15 @@
+node_modules
+data/childcare_db/childcare_graph.db
+data/childcare_db/childcare.db
+data/childcare_db/childcare_data.csv
+data/enhanced
+data/enhanced/enhanced-deeds.csv
+data/enhanced/enhanced-permits.csv
+data/input
+data/input/GRC20_Deeds.csv
+data/input/permits.csv
+data/mapping
+data/all-entity-links.csv
+data/deeds-triples.json
+data/entity-links.csv
+data/permits-triples.json

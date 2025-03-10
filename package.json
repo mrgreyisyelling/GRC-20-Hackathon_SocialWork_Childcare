@@ -1,0 +1,50 @@
+{
+  "name": "grc-20-hackathon_socialwork_childcare",
+  "version": "1.0.0",
+  "description": "A publisher for childcare facilities, licenses, locations, and dates to GRC-20 spaces (Inspired by multiple GRC-20 hackathon projects)",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "grc20": "node dist/scripts/grc20-cli.js",
+    "create-space": "node dist/scripts/grc20-cli.js create-space",
+    "setup-ontology": "node dist/scripts/grc20-cli.js setup-ontology",
+    "publish-facilities": "node dist/scripts/publish-facilities.js",
+    "publish-licenses": "node dist/scripts/publish-licenses.js",
+    "publish-locations": "node dist/scripts/publish-locations.js",
+    "publish-dates": "node dist/scripts/publish-dates.js",
+    "check-entity": "node dist/scripts/check-entity.js",
+    "deploy-and-publish": "node dist/scripts/deploy-and-publish.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grc-20",
+    "childcare",
+    "facilities",
+    "licenses",
+    "locations",
+    "dates",
+    "knowledge-graph"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@graphprotocol/grc-20": "^0.9.4",
+    "axios": "^1.8.2",
+    "base-58": "^0.0.1",
+    "csv-parse": "^5.6.0",
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.5.2",
+    "dotenv": "^16.4.7",
+    "fs-extra": "^11.3.0",
+    "node-fetch": "^3.2.0",
+    "sqlite3": "^5.1.7",
+    "uuid": "^11.1.0",
+    "viem": "^1.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "typescript": "^5.8.2"
+  }
+}
