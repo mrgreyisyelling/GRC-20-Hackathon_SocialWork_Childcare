@@ -13,3 +13,4 @@ data/all-entity-links.csv
 data/deeds-triples.json
 data/entity-links.csv
 data/permits-triples.json
+.env
