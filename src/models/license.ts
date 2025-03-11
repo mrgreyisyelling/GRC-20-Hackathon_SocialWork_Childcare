@@ -7,7 +7,7 @@
 
 import { BaseModel } from './base-model.js';
 import { Facility } from './facility.js';
-import { LicenseType } from './license-type.js';
+import { LicenseType } from './licenseType.js';
 import { DateEntity } from './date.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';

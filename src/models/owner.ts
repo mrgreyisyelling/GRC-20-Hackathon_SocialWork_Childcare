@@ -8,7 +8,7 @@
 import { BaseModel } from './base-model.js';
 import { Facility } from './facility.js';
 import { License } from './license.js';
-import { PhoneNumber } from './phone-number.js';
+import { PhoneNumber } from './phonenumber.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';
 

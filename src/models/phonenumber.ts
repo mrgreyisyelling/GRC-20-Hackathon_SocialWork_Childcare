@@ -8,7 +8,6 @@
 import { BaseModel } from './base-model.js';
 import { Owner } from './owner.js';
 import { Facility } from './facility.js';
-import { Business } from './business.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';
 
@@ -20,7 +19,7 @@ export class PhoneNumber extends BaseModel {
   private properties: PhoneNumberProperties;
   private owners: Owner[] = [];
   private facilities: Facility[] = [];
-  private businesses: Business[] = [];
+
 
   constructor(
     id: string | null,
@@ -60,14 +59,6 @@ export class PhoneNumber extends BaseModel {
     this.facilities.push(facility);
   }
 
-  /**
-   * Add a business to this phone number
-   * 
-   * @param business The business entity
-   */
-  addBusiness(business: Business): void {
-    this.businesses.push(business);
-  }
 
   /**
    * Generate the operations to create this phone number entity and its relations
@@ -119,18 +110,6 @@ export class PhoneNumber extends BaseModel {
           relationTypeId: usedByRelationTypeId,
         });
         ops.push(...facilityRelationOps);
-      }
-    }
-
-    // Add relationships to businesses
-    for (const business of this.businesses) {
-      if (business.getId()) {
-        const { ops: businessRelationOps } = Graph.createRelation({
-          fromId: phoneNumberId,
-          toId: business.getId()!,
-          relationTypeId: usedByRelationTypeId,
-        });
-        ops.push(...businessRelationOps);
       }
     }
 

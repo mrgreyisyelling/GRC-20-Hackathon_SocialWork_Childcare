@@ -13,9 +13,10 @@ import { Id } from '@graphprotocol/grc-20';
  * Represents a property value in the GRC-20 knowledge graph.
  */
 export interface PropertyValue {
-  type: 'TEXT' | 'NUMBER' | 'URL' | 'TIME' | 'POINT' | 'CHECKBOX';
+  type: 'TEXT' | 'NUMBER' | 'URL' | 'TIME' | 'POINT' | 'CHECKBOX' | 'BOOLEAN';
   value: string | number | boolean;
 }
+
 
 /**
  * Entity Operation

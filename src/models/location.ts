@@ -8,9 +8,9 @@
 import { BaseModel } from './base-model.js';
 import { City } from './city.js';
 import { State } from './state.js';
-import { ZipCode } from './zip-code.js';
+import { ZipCode } from './zipcode.js';
 import { Address } from './address.js';
-import { TimeZone } from './time-zone.js';
+import { TimeZone } from './timezone.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';
 

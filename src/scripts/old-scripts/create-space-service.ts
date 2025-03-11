@@ -4,7 +4,7 @@
  * This script creates a space using the TransactionService directly.
  */
 
-import { TransactionService } from '../services/transaction-service.js';
+import { TransactionService } from '../../services/transaction-service.js';
 import dotenv from 'dotenv';
 
 // Load environment variables

@@ -4,8 +4,11 @@
  * This file provides a CLI command to set up the ontology for the childcare data.
  */
 
-import { OntologyService } from '../../../../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/services/ontology-service.js';
+import { OntologyService } from '../../services/ontology-service.js';
+
 import { SpaceIds } from '../../config/constants.js';
+
+
 
 /**
  * Setup Ontology Command
@@ -34,22 +37,32 @@ export class SetupOntologyCommand {
     const dateSpaceId = options.dateSpace || SpaceIds.DATE;
     const locationSpaceId = options.locationSpace || SpaceIds.LOCATION;
 
-    console.log('Setting up ontology...');
-
-    if (options.facilityOnly) {
-      await OntologyService.setupFacilityOntology(facilitySpaceId);
-    } else if (options.licenseOnly) {
-      await OntologyService.setupLicenseOntology(licenseSpaceId);
-    } else if (options.dateOnly) {
-      await OntologyService.setupDateOntology(dateSpaceId);
-    } else if (options.locationOnly) {
-      await OntologyService.setupLocationOntology(locationSpaceId);
-    } else {
-      // If no specific option is chosen, set up all spaces
-      await OntologyService.setupOntologies(facilitySpaceId, licenseSpaceId, dateSpaceId, locationSpaceId);
+    // Validate Space IDs
+    if (!facilitySpaceId || !licenseSpaceId || !dateSpaceId || !locationSpaceId) {
+      throw new Error('Missing required Space IDs. Check your .env file or pass them explicitly.');
     }
 
-    console.log('Ontology setup complete!');
+    console.log('Setting up ontology...');
+
+    try {
+      if (options.facilityOnly) {
+        await OntologyService.setupFacilityOntology(facilitySpaceId);
+      } else if (options.licenseOnly) {
+        await OntologyService.setupLicenseOntology(licenseSpaceId);
+      } else if (options.dateOnly) {
+        await OntologyService.setupDateOntology(dateSpaceId);
+      } else if (options.locationOnly) {
+        await OntologyService.setupLocationOntology(locationSpaceId);
+      } else {
+        // If no specific option is chosen, set up all spaces
+        await OntologyService.setupOntologies(facilitySpaceId, licenseSpaceId, dateSpaceId, locationSpaceId);
+      }
+
+      console.log('✅ Ontology setup complete!');
+    } catch (error) {
+      console.error('❌ Error setting up ontology:', error);
+      process.exit(1);
+    }
   }
 }
 

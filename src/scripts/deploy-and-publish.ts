@@ -8,11 +8,11 @@
  *   npx ts-node src/scripts/deploy-and-publish.ts
  */
 
-import { TransactionService } from '../services/transaction-service.js';
-import { OntologyService } from '../services/ontology-service.js';
-import { SpaceIds } from '../config/constants.js';
+import { TransactionService } from '../services/transaction-service';
+import { OntologyService } from '../services/ontology-service';
+import { SpaceIds } from '../config/constants';
 import dotenv from 'dotenv';
-import { account } from '../utils/wallet.js';
+import { account } from '../utils/wallet';
 import { execSync } from 'child_process';
 
 // Load environment variables
@@ -28,10 +28,10 @@ async function main(): Promise<void> {
     console.log(`Address: ${account.address}`);
     
     // Debug logs for space IDs
-    console.log('Debug: SpaceIds.FACILITIES =', SpaceIds.FACILITIES);
-    console.log('Debug: SpaceIds.LICENSES =', SpaceIds.LICENSES);
-    console.log('Debug: SpaceIds.LOCATIONS =', SpaceIds.LOCATIONS);
-    console.log('Debug: SpaceIds.DATES =', SpaceIds.DATES);
+    console.log('Debug: SpaceIds.FACILITY =', SpaceIds.FACILITY);
+    console.log('Debug: SpaceIds.LICENSE =', SpaceIds.LICENSE);
+    console.log('Debug: SpaceIds.LOCATION =', SpaceIds.LOCATION);
+    console.log('Debug: SpaceIds.DATE =', SpaceIds.DATE);
 
     console.log('Debug: process.env.FACILITIES_SPACE_ID =', process.env.FACILITIES_SPACE_ID);
     console.log('Debug: process.env.LICENSES_SPACE_ID =', process.env.LICENSES_SPACE_ID);
@@ -42,7 +42,7 @@ async function main(): Promise<void> {
     console.log('\n=== STEP 1: ENSURING SPACES EXIST ===');
     
     // Check if Facilities space exists
-    const facilitiesSpaceId = process.env.FACILITIES_SPACE_ID || SpaceIds.FACILITIES;
+    const facilitiesSpaceId = process.env.FACILITIES_SPACE_ID || SpaceIds.FACILITY;
     console.log(`Checking if Facilities space exists (${facilitiesSpaceId})...`);
     const facilitiesSpaceExists = await TransactionService.spaceExists(facilitiesSpaceId);
     
@@ -56,7 +56,7 @@ async function main(): Promise<void> {
     }
     
     // Check if Licenses space exists
-    const licensesSpaceId = process.env.LICENSES_SPACE_ID || SpaceIds.LICENSES;
+    const licensesSpaceId = process.env.LICENSES_SPACE_ID || SpaceIds.LICENSE;
     console.log(`Checking if Licenses space exists (${licensesSpaceId})...`);
     const licensesSpaceExists = await TransactionService.spaceExists(licensesSpaceId);
     
@@ -70,7 +70,7 @@ async function main(): Promise<void> {
     }
     
     // Check if Locations space exists
-    const locationsSpaceId = process.env.LOCATIONS_SPACE_ID || SpaceIds.LOCATIONS;
+    const locationsSpaceId = process.env.LOCATIONS_SPACE_ID || SpaceIds.LOCATION;
     console.log(`Checking if Locations space exists (${locationsSpaceId})...`);
     const locationsSpaceExists = await TransactionService.spaceExists(locationsSpaceId);
     
@@ -84,7 +84,7 @@ async function main(): Promise<void> {
     }
 
     // Check if Dates space exists
-    const datesSpaceId = process.env.DATES_SPACE_ID || SpaceIds.DATES;
+    const datesSpaceId = process.env.DATES_SPACE_ID || SpaceIds.DATE;
     console.log(`Checking if Dates space exists (${datesSpaceId})...`);
     const datesSpaceExists = await TransactionService.spaceExists(datesSpaceId);
     

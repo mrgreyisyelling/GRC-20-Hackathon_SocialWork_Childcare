@@ -6,7 +6,7 @@
  */
 
 import { BaseModel } from './base-model.js';
-import { ScheduleEntry } from './schedule-entry.js';
+import { ScheduleEntry } from './ScheduleEntry.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';
 

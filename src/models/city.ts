@@ -62,7 +62,7 @@ export class City extends BaseModel {
       name: this.name,
       types: [cityTypeId],
       properties: {
-        [PropertyIds.NAME]: {
+        [PropertyIds.CITY_NAME]: {
           type: 'TEXT',
           value: this.properties.name,
         },

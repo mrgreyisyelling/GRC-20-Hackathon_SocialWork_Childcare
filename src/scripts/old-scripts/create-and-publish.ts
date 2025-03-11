@@ -4,7 +4,7 @@
  * This script creates spaces and publishes data to them.
  */
 
-import { TransactionService } from '../services/transaction-service.js';
+import { TransactionService } from '../../services/transaction-service.js';
 import { SpaceIds } from '../config/constants.js';
 import dotenv from 'dotenv';
 import fs from 'fs';

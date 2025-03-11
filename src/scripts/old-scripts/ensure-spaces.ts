@@ -4,7 +4,7 @@
  * This script checks if the spaces exist and creates them if they don't.
  */
 
-import { TransactionService } from '../services/transaction-service.js';
+import { TransactionService } from '../../services/transaction-service.js';
 import { SpaceIds } from '../config/constants.js';
 import dotenv from 'dotenv';
 import { account } from '../utils/wallet.js';

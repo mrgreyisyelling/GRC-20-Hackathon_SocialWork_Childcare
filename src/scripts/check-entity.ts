@@ -7,7 +7,7 @@
  *   node src/scripts/check-entity.js --space-id <id> --entity-id <id>
  */
 
-import { SpaceIds } from '../config/constants.js';
+import { SpaceIds } from 'config/constants';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -30,7 +30,7 @@ const VALID_SPACES = {
  * @param {string} entityId The entity ID
  * @returns {Promise<boolean>} A promise that resolves to true if the entity exists, false otherwise
  */
-async function checkEntity(spaceId, entityId) {
+async function checkEntity(spaceId: string, entityId: string): Promise<boolean> {
   try {
     const url = `https://geogenesis-git-feat-testnet-geo-browser.vercel.app/space/${spaceId}/${entityId}`;
     console.log(`Checking entity at ${url}...`);

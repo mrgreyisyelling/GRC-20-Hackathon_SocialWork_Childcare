@@ -1,17 +1,32 @@
 {
-    "compilerOptions": {
-      "target": "ES2020",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "esModuleInterop": true,
-      "strict": true,
-      "outDir": "dist",
-      "sourceMap": true,
-      "declaration": true,
-      "resolveJsonModule": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src/**/*", "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/setup-ontology.ts", "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/create-space.ts", "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/config/constants1.ts"],
-    "exclude": ["node_modules"]
-  }
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src",
+    "paths": {
+      "services/*": ["services/*"],
+      "config/*": ["config/*"],
+      "processors/*": ["processors/*"],
+      "models/*": ["models/*"],
+      "core/*": ["core/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/setup-ontology.ts",
+    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/create-space.ts",
+    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/config/constants.ts"
+  ],
+  "exclude": ["node_modules",
+    "src/models/oldstuff"
+ ],
+}

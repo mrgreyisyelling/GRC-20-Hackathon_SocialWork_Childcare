@@ -2,21 +2,23 @@ import fs from 'fs';
 import path from 'path';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
-import { TransactionService } from '../services/transaction-service.js';
-import { SpaceIds } from '../config/constants.js';
+import { EntityOp } from 'core/graph.js';
+import { TransactionService } from 'services/transaction-service.js';
+import { SpaceIds } from 'config/constants.js';
 import dotenv from 'dotenv';
 
 // Import entity processing functions
-import { processFacility } from '../processors/facility.js';
-import { processLocation } from '../processors/location.js';
-import { processOwner } from '../processors/owner.js';
-import { processLicense } from '../processors/license.js';
-import { processSchoolDistrict } from '../processors/school-district.js';
-import { processSchedule } from '../processors/schedule.js';
-import { processScheduleEntry } from '../processors/schedule-entry.js';
-import { processDayOfWeek } from '../processors/day-of-week.js';
-import { processTime } from '../processors/time.js';
-import { processStatus } from '../processors/status.js';
+import { processFacility } from 'processors/facility.js';
+import { processLocation } from 'processors/location.js';
+import { processOwner } from 'processors/owner.js';
+import { processLicense } from 'processors/license.js';
+import { processSchoolDistrict } from 'processors/school-district.js';
+import { processSchedule } from 'processors/schedule.js';
+import { processScheduleEntry } from 'processors/schedule-entry.js';
+import { processDayOfWeek } from 'processors/day-of-week.js';
+import { processTime } from 'processors/time.js';
+import { processStatus } from 'processors/status.js';
+
 
 // Load environment variables
 dotenv.config();
@@ -163,7 +165,7 @@ async function main(): Promise<void> {
     }
 
     // Step 2: Publish operations in batches
-    await publishOpsInBatches(SpaceIds.FACILITIES, allOps, batchSize);
+    await publishOpsInBatches(SpaceIds.FACILITY, allOps, batchSize);
 
     console.log("Processing and publishing complete.");
   } catch (error) {

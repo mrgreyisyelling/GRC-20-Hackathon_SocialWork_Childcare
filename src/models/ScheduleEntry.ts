@@ -5,12 +5,12 @@
  * It implements the relationship-based data model for schedule-related entities.
  */
 
-import { BaseModel } from './base-model.js';
-import { DayOfWeek } from './day-of-week.js';
-import { Time } from './time.js';
-import { Status } from './status.js';
-import { Graph, EntityOp } from '../core/graph.js';
-import { PropertyIds, RelationTypeIds } from '../config/constants.js';
+import { BaseModel } from 'models/base-model.js';
+import { DayOfWeek } from 'models/dayoftheweek.js';
+import { Time } from 'models/time.js';
+import { Status } from 'models/status.js';
+import { Graph, EntityOp } from 'core/graph.js';
+import { PropertyIds, RelationTypeIds } from 'config/constants.js';
 
 export interface ScheduleEntryProperties {
   day: string;

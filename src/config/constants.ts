@@ -44,6 +44,9 @@ export const TypeIds = {
  * These IDs are used to identify properties in the GRC-20 space.
  */
 export const PropertyIds = {
+  // ✅ Add this line:
+  BIRTH_YEAR: 'birth-year-property-id',
+
   // Facility properties
   FACILITY_NAME: 'facility-name-property-id',
   FACILITY_STATUS: 'facility-status-property-id',
@@ -61,6 +64,7 @@ export const PropertyIds = {
 
   // Owner properties
   ALTERNATIVE_CONTACT_NUMBER: 'alternative-contact-number-property-id',
+  NAME: 'name-property-id',
 
   // License properties
   LICENSE_NUMBER: 'license-number-property-id',
@@ -72,6 +76,9 @@ export const PropertyIds = {
   // Schedule properties
   TIME_VALUE: 'time-value-property-id',
   DAY: 'day-property-id',
+  OPEN_TIME: 'open-time-property-id',  // <-- Add this
+  CLOSE_TIME: 'close-time-property-id',
+  SCHEDULE_NAME: 'schedule-name-property-id',
 
   // School District properties
   DISTRICT_NAME: 'district-name-property-id',
@@ -82,11 +89,10 @@ export const PropertyIds = {
   // Age Group properties
   AGE_LABEL: 'age-label-property-id',
 
-  // Birth Year properties
-  YEAR: 'birth-year-property-id',
-
   // Status properties
   STATUS_VALUE: 'status-value-property-id',
+  STATUS: 'status-property-id',  // <-- Add this
+  STATUS_LABEL: 'status-label-property-id',
 };
 
 /**

@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
-import { TransactionService } from '../services/transaction-service.js';
-import { SpaceIds } from '../config/constants.js';
+import { TransactionService } from '../services/transaction-service';
+import { SpaceIds } from '../config/constants';
 import dotenv from 'dotenv';
 
 // Load environment variables

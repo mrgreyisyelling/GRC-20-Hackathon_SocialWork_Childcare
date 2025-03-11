@@ -8,8 +8,8 @@
  *   npx ts-node src/scripts/deploy-and-publish.ts
  */
 
-import { TransactionService } from '../services/transaction-service.js';
-import { OntologyService } from '../services/ontology-service.js';
+import { TransactionService } from '../../services/transaction-service.js';
+import { OntologyService } from '../../services/ontology-service.js';
 import { SpaceIds } from '../config/constants.js';
 import dotenv from 'dotenv';
 import { account } from '../utils/wallet.js';

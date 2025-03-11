@@ -1,5 +1,5 @@
 import { EntityOp } from '../core/graph.js';
-import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } from './utils.js';
+import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } from 'utils.js';
 
 export function processLocation(data: any): EntityOp[] {
   const ops: EntityOp[] = [];

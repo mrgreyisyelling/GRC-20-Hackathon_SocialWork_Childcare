@@ -6,8 +6,8 @@
  */
 
 import { BaseModel } from './base-model.js';
-import { Graph, EntityOp } from '../core/graph.js';
-import { PropertyIds } from '../config/constants.js';
+import { Graph, EntityOp } from 'core/graph.js';
+import { PropertyIds } from 'config/constants.js';
 
 export interface DayOfWeekProperties {
   day: string;

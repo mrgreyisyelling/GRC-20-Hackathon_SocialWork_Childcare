@@ -9,7 +9,7 @@ import { BaseModel } from './base-model.js';
 import { Owner } from './owner.js';
 import { Location } from './location.js';
 import { License } from './license.js';
-import { SchoolDistrict } from './school-district.js';
+import { SchoolDistrict } from './schooldistrict.js';
 import { Schedule } from './schedule.js';
 import { Graph, EntityOp } from '../core/graph.js';
 import { PropertyIds, RelationTypeIds } from '../config/constants.js';
