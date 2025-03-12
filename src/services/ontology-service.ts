@@ -4,8 +4,8 @@
  * Provides services for setting up and managing the ontology for the childcare data.
  */
 
-import { TypeIds, PropertyIds, RelationTypeIds, SpaceIds } from '../../../../../GRC-20-Hackathon_SocialWork_Childcare/src/config/constants.js';
-import { EntityOp } from '../core/graph.js';
+import { TypeIds, PropertyIds, RelationTypeIds, SpaceIds } from '../config/constants.js';
+import { EntityOp } from 'core/graph.js';
 
 /**
  * Ontology Service
@@ -30,7 +30,7 @@ export class OntologyService {
       { type: 'CREATE_ENTITY', id: PropertyIds.FACILITY_NAME, name: 'Facility Name', types: [] },
       { type: 'CREATE_ENTITY', id: PropertyIds.FACILITY_STATUS, name: 'Facility Status', types: [] },
       { type: 'CREATE_ENTITY', id: PropertyIds.FACILITY_TYPE, name: 'Facility Type', types: [] },
-      { type: 'CREATE_ENTITY', id: PropertyIds.ADDRESS, name: 'Address', types: [] },
+      { type: 'CREATE_ENTITY', id: PropertyIds.FULL_ADDRESS, name: 'Full Address', types: [] },
 
       // Relation types
       { type: 'CREATE_ENTITY', id: RelationTypeIds.LOCATED_AT, name: 'Located At', types: [] },
@@ -56,8 +56,8 @@ static generateLocationOntologyOps(): EntityOp[] {
     // Property types
     { type: 'CREATE_ENTITY', id: PropertyIds.CITY_NAME, name: 'City Name', types: [] },
     { type: 'CREATE_ENTITY', id: PropertyIds.STATE_NAME, name: 'State Name', types: [] },
-    { type: 'CREATE_ENTITY', id: PropertyIds.ZIP_CODE_VALUE, name: 'Zip Code Value', types: [] },
-    { type: 'CREATE_ENTITY', id: PropertyIds.ADDRESS_FULL, name: 'Full Address', types: [] },
+    { type: 'CREATE_ENTITY', id: PropertyIds.ZIP_CODE, name: 'Zip Code', types: [] },
+    { type: 'CREATE_ENTITY', id: PropertyIds.FULL_ADDRESS, name: 'Full Address', types: [] },
     { type: 'CREATE_ENTITY', id: PropertyIds.TIME_ZONE_NAME, name: 'Time Zone Name', types: [] },
 
     // Relation types
@@ -65,7 +65,7 @@ static generateLocationOntologyOps(): EntityOp[] {
     { type: 'CREATE_ENTITY', id: RelationTypeIds.IN_STATE, name: 'In State', types: [] },
     { type: 'CREATE_ENTITY', id: RelationTypeIds.HAS_ZIP, name: 'Has Zip', types: [] },
     { type: 'CREATE_ENTITY', id: RelationTypeIds.HAS_ADDRESS, name: 'Has Address', types: [] },
-    { type: 'CREATE_ENTITY', id: RelationTypeIds.USES_TIME_ZONE, name: 'Uses Time Zone', types: [] }
+    { type: 'CREATE_ENTITY', id: RelationTypeIds.USES_TIMEZONE, name: 'Uses TimeZone', types: [] }
   ];
 }
   

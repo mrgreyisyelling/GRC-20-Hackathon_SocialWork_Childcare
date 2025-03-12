@@ -9,7 +9,9 @@ export function processStatus(data: any): EntityOp[] {
   const attributes = getOrCreateAttributes("Status", data);
 
   // Relationships
-  const relationships = []; // No direct relationships defined in the schema for Status
+  
+  // Explicitly define the type of relationships
+  const relationships: EntityOp[] = []; // No direct relationships defined for Status
 
-  return [...ops, ...attributes, ...relationships];
+  return [statusId, ...attributes, ...relationships];
 }

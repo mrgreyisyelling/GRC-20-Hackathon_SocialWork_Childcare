@@ -4,25 +4,25 @@ import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } fro
 export function processFacility(data: any): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  // Retrieve or create Facility entity
-  const facilityId = getOrCreateEntity("Facility", data);
+  // Create Facility entity and attributes
+  const facilityOp = getOrCreateEntity("Facility", data);
   const attributes = getOrCreateAttributes("Facility", data);
 
-  // Retrieve related entities
-  const locationId = getOrCreateEntity("Location", data);
-  const ownerId = getOrCreateEntity("Owner", data);
-  const licenseId = getOrCreateEntity("License", data);
-  const schoolDistrictId = getOrCreateEntity("SchoolDistrict", data);
-  const scheduleId = getOrCreateEntity("Schedule", data);
+  // Create related entities
+  const locationOp = getOrCreateEntity("Location", data);
+  const ownerOp = getOrCreateEntity("Owner", data);
+  const licenseOp = getOrCreateEntity("License", data);
+  const schoolDistrictOp = getOrCreateEntity("SchoolDistrict", data);
+  const scheduleOp = getOrCreateEntity("Schedule", data);
 
-  // Relationships
+  // Create relationships
   const relationships = [
-    getOrCreateRelationship(facilityId, locationId, "LOCATED_AT"),
-    getOrCreateRelationship(facilityId, ownerId, "OWNED_BY"),
-    getOrCreateRelationship(facilityId, licenseId, "LICENSED_UNDER"),
-    getOrCreateRelationship(facilityId, schoolDistrictId, "AFFILIATED_WITH"),
-    getOrCreateRelationship(facilityId, scheduleId, "FOLLOWS_SCHEDULE"),
+    getOrCreateRelationship(facilityOp.id, locationOp.id, "LOCATED_AT"),
+    getOrCreateRelationship(facilityOp.id, ownerOp.id, "OWNED_BY"),
+    getOrCreateRelationship(facilityOp.id, licenseOp.id, "LICENSED_UNDER"),
+    getOrCreateRelationship(facilityOp.id, schoolDistrictOp.id, "AFFILIATED_WITH"),
+    getOrCreateRelationship(facilityOp.id, scheduleOp.id, "FOLLOWS_SCHEDULE"),
   ];
 
-  return [...ops, ...attributes, ...relationships];
+  return [facilityOp, ...attributes, locationOp, ownerOp, licenseOp, schoolDistrictOp, scheduleOp, ...relationships];
 }

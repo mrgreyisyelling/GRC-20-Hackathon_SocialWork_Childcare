@@ -1,0 +1,106 @@
+.
+├── data
+│   ├── all-entity-links.csv
+│   ├── childcare_db
+│   │   ├── 1_create_facility_entities.py
+│   │   ├── childcare_data.csv
+│   │   ├── childcare.db
+│   │   ├── childcare_graph.db
+│   │   ├── convert_into_entities.py
+│   │   ├── export.py
+│   │   ├── exports
+│   │   ├── export.sh
+│   │   ├── import_data.py
+│   │   ├── __pycache__
+│   │   ├── query_CC.py
+│   │   ├── schema.py
+│   │   └── venv
+│   ├── deeds-triples.json
+│   ├── enhanced
+│   │   ├── enhanced-deeds.csv
+│   │   └── enhanced-permits.csv
+│   ├── entity-links.csv
+│   ├── input
+│   │   ├── GRC20_Deeds.csv
+│   │   └── permits.csv
+│   ├── mapping
+│   │   ├── permit-addresses.json
+│   │   └── property-addresses.json
+│   └── permits-triples.json
+├── directory_structure.txt
+├── dist
+│   ├── GRC-20-Hackathon_SocialWork_Childcare
+│   │   └── src
+│   └── Knowledge_graph_Work
+│       └── GRC-20_System
+├── package.json
+├── package-lock.json
+├── README.md
+├── src
+│   ├── cli
+│   │   └── commands
+│   ├── config
+│   │   └── constants.ts
+│   ├── core
+│   │   └── graph.ts
+│   ├── data
+│   │   └── triples.js
+│   ├── models
+│   │   ├── address.ts
+│   │   ├── agegroup.ts
+│   │   ├── base-model.ts
+│   │   ├── BirthYear.ts
+│   │   ├── city.ts
+│   │   ├── date.ts
+│   │   ├── dayoftheweek.ts
+│   │   ├── facility.ts
+│   │   ├── license.ts
+│   │   ├── licenseType.ts
+│   │   ├── location.ts
+│   │   ├── oldstuff
+│   │   ├── owner.ts
+│   │   ├── phonenumber.ts
+│   │   ├── ScheduleEntry.ts
+│   │   ├── schedule.ts
+│   │   ├── schooldistrict.ts
+│   │   ├── state.ts
+│   │   ├── status.ts
+│   │   ├── time.ts
+│   │   ├── timezone.ts
+│   │   └── zipcode.ts
+│   ├── processors
+│   │   ├── day-of-week.ts
+│   │   ├── facility.ts
+│   │   ├── license.ts
+│   │   ├── location.ts
+│   │   ├── owner.ts
+│   │   ├── schedule-entry.ts
+│   │   ├── schedule.ts
+│   │   ├── school-district.ts
+│   │   ├── status.ts
+│   │   └── time.ts
+│   ├── scripts
+│   │   ├── check-and-update.js
+│   │   ├── check-entity.ts
+│   │   ├── check-spaces-exist.js
+│   │   ├── deploy-and-publish.ts
+│   │   ├── export-entities-to-csv.js
+│   │   ├── generate-browser-links.js
+│   │   ├── generate-enhanced-csv.js
+│   │   ├── grc20-cli.ts
+│   │   ├── list-entities.js
+│   │   ├── log-info.js
+│   │   ├── old-scripts
+│   │   ├── publish-entities.ts
+│   │   ├── publish-facilities.ts
+│   │   ├── push-existing-entities.js
+│   │   └── README.md
+│   ├── services
+│   │   ├── ontology-service.ts
+│   │   └── transaction-service.ts
+│   ├── utils
+│   │   └── wallet.ts
+│   └── utils.ts
+└── tsconfig.json
+
+26 directories, 77 files

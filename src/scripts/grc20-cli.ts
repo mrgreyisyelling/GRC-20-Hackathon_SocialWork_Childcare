@@ -11,11 +11,11 @@
 
 import dotenv from 'dotenv';
 import { Graph } from '@graphprotocol/grc-20';
-import { account } from '../utils/wallet';
+import { account } from '../utils/wallet.js';
 import fs from 'fs';
 import path from 'path';
-import { OntologyService } from '../services/ontology-service';
-import { SpaceIds } from '../config/constants';
+import { OntologyService } from '../services/ontology-service.js';
+import { SpaceIds } from '../config/constants.js';
 
 // Load environment variables
 dotenv.config();

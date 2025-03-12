@@ -9,7 +9,8 @@ export function processTime(data: any): EntityOp[] {
   const attributes = getOrCreateAttributes("Time", data);
 
   // Relationships
-  const relationships = []; // No direct relationships defined in the schema for Time
+  // Explicitly define the type of relationships
+  const relationships: EntityOp[] = []; // No direct relationships defined for Status
 
-  return [...ops, ...attributes, ...relationships];
+  return [timeId, ...attributes, ...relationships];
 }

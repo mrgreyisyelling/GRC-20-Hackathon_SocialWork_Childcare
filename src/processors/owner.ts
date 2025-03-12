@@ -4,18 +4,21 @@ import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } fro
 export function processOwner(data: any): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  const ownerId = getOrCreateEntity("Owner", data);
+  // Create Owner entity and attributes
+  const ownerOp = getOrCreateEntity("Owner", data);
   const attributes = getOrCreateAttributes("Owner", data);
 
-  const phoneId = getOrCreateEntity("PhoneNumber", data);
-  const facilityId = getOrCreateEntity("Facility", data);
-  const licenseId = getOrCreateEntity("License", data);
+  // Create related entities
+  const phoneOp = getOrCreateEntity("PhoneNumber", data);
+  const facilityOp = getOrCreateEntity("Facility", data);
+  const licenseOp = getOrCreateEntity("License", data);
 
+  // Create relationships
   const relationships = [
-    getOrCreateRelationship(ownerId, phoneId, "HAS_PHONE"),
-    getOrCreateRelationship(ownerId, facilityId, "OWNS_FACILITY"),
-    getOrCreateRelationship(ownerId, licenseId, "HOLDS_LICENSE"),
+    getOrCreateRelationship(ownerOp.id, phoneOp.id, "HAS_PHONE"),
+    getOrCreateRelationship(ownerOp.id, facilityOp.id, "OWNS_FACILITY"),
+    getOrCreateRelationship(ownerOp.id, licenseOp.id, "HOLDS_LICENSE"),
   ];
 
-  return [...ops, ...attributes, ...relationships];
+  return [ownerOp, ...attributes, phoneOp, facilityOp, licenseOp, ...relationships];
 }

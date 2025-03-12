@@ -1,20 +1,18 @@
 import { EntityOp } from '../core/graph.js';
-import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } from '../utils.js';
+import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } from 'utils.js';
 
 export function processDayOfWeek(data: any): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  // Retrieve or create DayOfWeek entity
-  const dayOfWeekId = getOrCreateEntity("DayOfWeek", data);
+  // Create DayOfWeek entity and attributes
+  const dayOfWeekOp = getOrCreateEntity("DayOfWeek", data);
   const attributes = getOrCreateAttributes("DayOfWeek", data);
 
-  // Retrieve related entities
-  const scheduleEntryId = getOrCreateEntity("ScheduleEntry", data);
+  // Create related entity
+  const scheduleEntryOp = getOrCreateEntity("ScheduleEntry", data);
 
-  // Relationships
-  const relationships = [
-    getOrCreateRelationship(dayOfWeekId, scheduleEntryId, "PART_OF"),
-  ];
+  // Create relationship
+  const relationship = getOrCreateRelationship(dayOfWeekOp.id, scheduleEntryOp.id, "PART_OF");
 
-  return [...ops, ...attributes, ...relationships];
+  return [dayOfWeekOp, ...attributes, scheduleEntryOp, relationship];
 }

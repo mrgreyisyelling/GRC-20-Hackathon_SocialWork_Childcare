@@ -8,11 +8,11 @@
  *   npx ts-node src/scripts/deploy-and-publish.ts
  */
 
-import { TransactionService } from '../services/transaction-service';
-import { OntologyService } from '../services/ontology-service';
-import { SpaceIds } from '../config/constants';
+import { TransactionService } from '../services/transaction-service.js';
+import { OntologyService } from '../services/ontology-service.js';
+import { SpaceIds } from '../config/constants.js';
 import dotenv from 'dotenv';
-import { account } from '../utils/wallet';
+import { account } from '../utils/wallet.js';
 import { execSync } from 'child_process';
 
 // Load environment variables

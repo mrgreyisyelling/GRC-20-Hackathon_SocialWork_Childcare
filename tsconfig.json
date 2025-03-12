@@ -17,16 +17,16 @@
       "config/*": ["config/*"],
       "processors/*": ["processors/*"],
       "models/*": ["models/*"],
-      "core/*": ["core/*"]
+      "core/*": ["core/*"],
+      "commands/*": ["cli/commands/*"]
     }
   },
   "include": [
-    "src/**/*",
-    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/setup-ontology.ts",
-    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/cli/commands/create-space.ts",
-    "../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/config/constants.ts"
+    "src/**/*"
   ],
-  "exclude": ["node_modules",
-    "src/models/oldstuff"
- ],
+  "exclude": [
+    "node_modules",
+    "src/models/oldstuff",
+    "src/scripts/old-scripts"
+  ],
 }

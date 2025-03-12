@@ -7,7 +7,7 @@
 import { execSync } from 'child_process';
 import dotenv from 'dotenv';
 import { Wallet } from 'ethers';
-import { account } from '../../../../Knowledge_graph_Work/GRC-20_System/GRC20-Hackathon-main/src/utils/wallet.js';
+import { account } from 'utils/wallet.js';
 
 dotenv.config();
 

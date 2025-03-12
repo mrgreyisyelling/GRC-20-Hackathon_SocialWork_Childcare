@@ -4,17 +4,15 @@ import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } fro
 export function processSchoolDistrict(data: any): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  // Retrieve or create SchoolDistrict entity
-  const schoolDistrictId = getOrCreateEntity("SchoolDistrict", data);
+  // Create SchoolDistrict entity and attributes
+  const schoolDistrictOp = getOrCreateEntity("SchoolDistrict", data);
   const attributes = getOrCreateAttributes("SchoolDistrict", data);
 
-  // Retrieve related entities
-  const facilityId = getOrCreateEntity("Facility", data);
+  // Create related entity
+  const facilityOp = getOrCreateEntity("Facility", data);
 
-  // Relationships
-  const relationships = [
-    getOrCreateRelationship(schoolDistrictId, facilityId, "OVERSEES"),
-  ];
+  // Create relationship
+  const relationship = getOrCreateRelationship(schoolDistrictOp.id, facilityOp.id, "OVERSEES");
 
-  return [...ops, ...attributes, ...relationships];
+  return [schoolDistrictOp, ...attributes, facilityOp, relationship];
 }

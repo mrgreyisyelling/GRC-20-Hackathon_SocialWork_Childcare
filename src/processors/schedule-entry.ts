@@ -1,26 +1,26 @@
 import { EntityOp } from '../core/graph.js';
 import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } from '../utils.js';
 
-export function processScheduleEntry(data: any): EntityOp[] {
+export function processScheduleEntry(data: any, day: string): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  // Retrieve or create ScheduleEntry entity
-  const scheduleEntryId = getOrCreateEntity("ScheduleEntry", data);
+  // Create ScheduleEntry entity and attributes
+  const scheduleEntryOp = getOrCreateEntity("ScheduleEntry", data);
   const attributes = getOrCreateAttributes("ScheduleEntry", data);
 
-  // Retrieve related entities
-  const dayOfWeekId = getOrCreateEntity("DayOfWeek", data);
-  const openTimeId = getOrCreateEntity("Time", data);
-  const closeTimeId = getOrCreateEntity("Time", data);
-  const statusId = getOrCreateEntity("Status", data);
+  // Create related entities
+  const dayOfWeekOp = getOrCreateEntity("DayOfWeek", { day });
+  const openTimeOp = getOrCreateEntity("Time", data);
+  const closeTimeOp = getOrCreateEntity("Time", data);
+  const statusOp = getOrCreateEntity("Status", data);
 
-  // Relationships
+  // Create relationships
   const relationships = [
-    getOrCreateRelationship(scheduleEntryId, dayOfWeekId, "HAS_DAY"),
-    getOrCreateRelationship(scheduleEntryId, openTimeId, "OPENS_AT"),
-    getOrCreateRelationship(scheduleEntryId, closeTimeId, "CLOSES_AT"),
-    getOrCreateRelationship(scheduleEntryId, statusId, "STATUS"),
+    getOrCreateRelationship(scheduleEntryOp.id, dayOfWeekOp.id, "HAS_DAY"),
+    getOrCreateRelationship(scheduleEntryOp.id, openTimeOp.id, "OPENS_AT"),
+    getOrCreateRelationship(scheduleEntryOp.id, closeTimeOp.id, "CLOSES_AT"),
+    getOrCreateRelationship(scheduleEntryOp.id, statusOp.id, "STATUS"),
   ];
 
-  return [...ops, ...attributes, ...relationships];
+  return [scheduleEntryOp, ...attributes, dayOfWeekOp, openTimeOp, closeTimeOp, statusOp, ...relationships];
 }

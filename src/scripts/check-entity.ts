@@ -7,7 +7,7 @@
  *   node src/scripts/check-entity.js --space-id <id> --entity-id <id>
  */
 
-import { SpaceIds } from 'config/constants';
+import { SpaceIds } from 'config/constants.js';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -16,7 +16,7 @@ dotenv.config();
 /**
  * List of valid spaces
  */
-const VALID_SPACES = {
+const VALID_SPACES: Record<string, string> = {
   FACILITY: SpaceIds.FACILITY,
   LICENSE: SpaceIds.LICENSE,
   DATE: SpaceIds.DATE,
@@ -90,8 +90,19 @@ async function main() {
     if (!entityId) {
       throw new Error('Entity ID is required. Provide it with --entity-id.');
     }
+    /**
+     * List of valid spaces
+     */
+ 
 
-    console.log(`🔍 Checking entity in space: ${Object.keys(VALID_SPACES).find(key => VALID_SPACES[key] === spaceId)}`);
+    /**
+     * Fix: Explicitly cast key lookup as keyof typeof VALID_SPACES
+     */
+    console.log(
+      `🔍 Checking entity in space: ${
+        Object.keys(VALID_SPACES).find(key => VALID_SPACES[key as keyof typeof VALID_SPACES] === spaceId)
+      }`
+    );
     console.log(`🔍 Entity ID: ${entityId}`);
 
     // Check if the entity exists

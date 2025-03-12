@@ -4,20 +4,23 @@ import { getOrCreateEntity, getOrCreateAttributes, getOrCreateRelationship } fro
 export function processLicense(data: any): EntityOp[] {
   const ops: EntityOp[] = [];
 
-  const licenseId = getOrCreateEntity("License", data);
+  // Create License entity and attributes
+  const licenseOp = getOrCreateEntity("License", data);
   const attributes = getOrCreateAttributes("License", data);
 
-  const facilityId = getOrCreateEntity("Facility", data);
-  const licenseTypeId = getOrCreateEntity("LicenseType", data);
-  const issueDateId = getOrCreateEntity("Date", { date_value: data.license_issue_date });
-  const expiryDateId = getOrCreateEntity("Date", { date_value: data.license_expiry_date });
+  // Create related entities
+  const facilityOp = getOrCreateEntity("Facility", data);
+  const licenseTypeOp = getOrCreateEntity("LicenseType", data);
+  const issueDateOp = getOrCreateEntity("Date", { date_value: data.license_issue_date });
+  const expiryDateOp = getOrCreateEntity("Date", { date_value: data.license_expiry_date });
 
+  // Create relationships
   const relationships = [
-    getOrCreateRelationship(licenseId, facilityId, "GRANTED_TO"),
-    getOrCreateRelationship(licenseId, licenseTypeId, "HAS_TYPE"),
-    getOrCreateRelationship(licenseId, issueDateId, "ISSUED_ON"),
-    getOrCreateRelationship(licenseId, expiryDateId, "EXPIRES_ON"),
+    getOrCreateRelationship(licenseOp.id, facilityOp.id, "GRANTED_TO"),
+    getOrCreateRelationship(licenseOp.id, licenseTypeOp.id, "HAS_TYPE"),
+    getOrCreateRelationship(licenseOp.id, issueDateOp.id, "ISSUED_ON"),
+    getOrCreateRelationship(licenseOp.id, expiryDateOp.id, "EXPIRES_ON"),
   ];
 
-  return [...ops, ...attributes, ...relationships];
+  return [licenseOp, ...attributes, facilityOp, licenseTypeOp, issueDateOp, expiryDateOp, ...relationships];
 }

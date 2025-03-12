@@ -2,9 +2,25 @@ import fs from 'fs';
 import path from 'path';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
-import { TransactionService } from '../services/transaction-service';
-import { SpaceIds } from '../config/constants';
+import { TransactionService } from 'services/transaction-service.js';
+import { EntityOp } from 'core/graph.js';
+import { SpaceIds } from 'config/constants.js';
 import dotenv from 'dotenv';
+
+// Import entity processing functions
+import { processFacility } from 'processors/facility.js';
+import { processLocation } from 'processors/location.js';
+import { processOwner } from 'processors/owner.js';
+import { processLicense } from 'processors/license.js';
+import { processSchoolDistrict } from 'processors/school-district.js';
+import { processSchedule } from 'processors/schedule.js';
+import { processScheduleEntry } from 'processors/schedule-entry.js';
+import { processDayOfWeek } from 'processors/day-of-week.js';
+import { processTime } from 'processors/time.js';
+import { processStatus } from 'processors/status.js';
+
+
+
 
 // Load environment variables
 dotenv.config();
@@ -89,10 +105,46 @@ function processEntitiesByType(data: FacilityData, entityType: string): EntityOp
  * @returns A single aggregated list of entity operations.
  */
 function generateOpsList(facilities: FacilityData[], selectedTypes: string[]): EntityOp[] {
-  return facilities.flatMap(data =>
+  const allOps = facilities.flatMap(data =>
     selectedTypes.flatMap(entityType => processEntitiesByType(data, entityType))
   );
+
+  return deduplicateOps(allOps);
 }
+
+function deduplicateOps(ops: EntityOp[]): EntityOp[] {
+  const entitySet = new Map<string, EntityOp>();
+  const attributeSet = new Set<string>();
+  const relationSet = new Map<string, EntityOp>();
+
+  const deduplicatedOps: EntityOp[] = [];
+
+  for (const op of ops) {
+    if (op.type === "CREATE_ENTITY") {
+      if (!entitySet.has(op.id)) {
+        entitySet.set(op.id, op);
+        deduplicatedOps.push(op);
+      }
+    } else if (op.type === "SET_PROPERTY") {
+      const key = `${op.entityId}-${op.propertyId}`;
+      if (!attributeSet.has(key)) {
+        attributeSet.add(key);
+        deduplicatedOps.push(op);
+      }
+    } else if (op.type === "CREATE_RELATION") {
+      if (!relationSet.has(op.id)) {
+        relationSet.set(op.id, op);
+        deduplicatedOps.push(op);
+      }
+    } else {
+      deduplicatedOps.push(op);
+    }
+  }
+
+  return deduplicatedOps;
+}
+
+
 
 /**
  * Publishes all collected operations in batches.
@@ -104,7 +156,7 @@ function generateOpsList(facilities: FacilityData[], selectedTypes: string[]): E
 async function publishOpsInBatches(spaceId: string, allOps: EntityOp[], batchSize: number = 10): Promise<void> {
   console.log(`Total operations to publish: ${allOps.length}`);
 
-  const batches = [];
+  const batches: EntityOp[][] = [];
   for (let i = 0; i < allOps.length; i += batchSize) {
     batches.push(allOps.slice(i, i + batchSize));
   }
@@ -161,7 +213,7 @@ async function main(): Promise<void> {
     }
 
     // Step 2: Publish operations in batches
-    await publishOpsInBatches(FACILITIES_SPACE_ID, allOps, batchSize);
+    await publishOpsInBatches(SpaceIds.FACILITY, allOps, batchSize);
 
     console.log("Processing and publishing complete.");
   } catch (error) {
